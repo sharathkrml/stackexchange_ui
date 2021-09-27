@@ -6,6 +6,9 @@ import NavBar from "./components/NavBar/NavBar";
 const axios = require("axios");
 function App() {
   const [results, setResults] = useState([]);
+  const [sort, setSort] = useState();
+  const [order, setOrder] = useState();
+  const [closed, setClosed] = useState();
   useEffect(() => {
     axios
       .get(
@@ -26,20 +29,32 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <Bottomheader />
+      <Bottomheader
+        sort={sort}
+        setSort={setSort}
+        order={order}
+        setOrder={setOrder}
+        closed={closed}
+        setClosed={setClosed}
+      />
 
       <div className="commentContainer">
-        {results.map((result, index) =>
-        (<Comments
-          key={index}
-          link={result.link}
-          username={result.owner.display_name}
-          message={result.title}
-        />))}
+        {results.map((result, index) => (
+          <Comments
+            key={index}
+            link={result.link}
+            userlink={result.owner.link}
+            username={result.owner.display_name}
+            avatar={result.owner.profile_image}
+            message={result.title}
+          />
+        ))}
         <div class="pagination">
           <div>&laquo;</div>
           <div>1</div>
-          <div class="active" href="#">2</div>
+          <div class="active" href="#">
+            2
+          </div>
           <div href="#">3</div>
           <div href="#">4</div>
           <div href="#">5</div>

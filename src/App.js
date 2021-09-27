@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Bottomheader from './components/BottomHeader/Bottomheader';
+import Comments from './components/comments/Comments';
+import NavBar from './components/NavBar/NavBar';
 
 function App() {
+  const msg = "Labore nisi dolor adipisicing id duis reprehenderit. Do aliquip quis cupidatat sit occaecat do esse pariatur sint nostrud eiusmod aliqua quis. Voluptate reprehenderit quis ut reprehenderit. Tempor reprehenderit excepteur irure aute in."
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      <Bottomheader />
+    
+      <div className="commentContainer">
+      <Comments username="username" date="date" message={msg} />
+      <Comments username="username" date="date" message={msg} />
+      <Comments username="username" date="date" message={msg} />
+      <Comments username="username" date="date" message={msg} />
+      <Comments username="username" date="date" message={msg} />
+      <Comments username="username" date="date" message={msg} />
+      <Comments username="username" date="date" message={msg} />
+      <Comments username="username" date="date" message={msg} />
+      <Comments username="username" date="date" message={msg} />
+      <Comments username="username" date="date" message={msg} />
+      </div>
     </div>
   );
 }

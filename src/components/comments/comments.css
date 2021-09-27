@@ -1,0 +1,50 @@
+.comment {
+    width: 90vw;
+    height: 25vh;
+    margin-top: 8vh;
+    border: 2px solid white;
+    border-radius: 10px;
+    display: flex;
+    padding-top: 40px;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: "100%";
+    align-items: flex-start;
+    padding-left: 20px;
+    height: 15vh;
+    padding-top: 10px;
+    justify-content: center;
+    background-color: rgb(34, 38, 38);
+}
+
+.content p {
+    color: white;
+    max-width: "80%";
+}
+
+.bottom-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 5vw;
+  margin-top: 20px;
+}  
+
+.hl {
+    height: 2px;
+    width: "100%";
+    background-color: white;
+    margin-top: 5vh;
+}
+.date {
+   color: white;
+}
+
+.username {
+   color: blue;
+}

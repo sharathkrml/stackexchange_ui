@@ -1,0 +1,24 @@
+
+.parameters{
+    display: block;
+    margin: 60px 150px;
+  }
+  .parameter{
+    margin: 10px;
+  }
+  .expandicon{
+    width: 18px;
+    margin-left: 4px;
+    transform: rotate(180deg);
+  }
+  .parameter-input{
+    width: 250px;
+    height: 25px;
+    margin-left: 10px;
+  }
+  .parameter-select{
+    width: 250px;
+  }
+  .label-holder{
+    color:white;
+  }

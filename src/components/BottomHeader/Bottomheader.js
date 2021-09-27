@@ -1,5 +1,6 @@
 import React from 'react'
 import './BottomHeader.css'
+import expandicon from '../../assets/images/expand-arrow.svg'
 function Bottomheader(props) {
     return (
         <div className="bottom_header">
@@ -28,7 +29,7 @@ function Bottomheader(props) {
                 </div>
                </li>
                <li className="navbar_item-last">
-                <span style={{cursor:'pointer'}}>advanced options</span>
+                <span style={{cursor:'pointer'}}>advanced options<img style={{transform: 'rotate(180deg)'}} className='expandicon' src={expandicon} alt='expand'/></span>
                </li>
             </ul>
         </div>

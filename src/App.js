@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Bottomheader from "./components/BottomHeader/Bottomheader";
 import Comments from "./components/comments/Comments";
 import NavBar from "./components/NavBar/NavBar";
+import AdvancedSearch from "./components/AdvancedSearch/AdvancedSearch";
 const axios = require("axios");
 function App() {
   const [results, setResults] = useState([]);
@@ -37,7 +38,7 @@ function App() {
         closed={closed}
         setClosed={setClosed}
       />
-
+      <AdvancedSearch/>
       <div className="commentContainer">
         {results.map((result, index) => (
           <Comments

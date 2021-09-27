@@ -1,23 +1,29 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Bottomheader from "./components/BottomHeader/Bottomheader";
 import Comments from "./components/comments/Comments";
 import NavBar from "./components/NavBar/NavBar";
 import AdvancedSearch from "./components/AdvancedSearch/AdvancedSearch";
 const axios = require("axios");
 function App() {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState();
   const [searchoptions, setSearchOptions] = useState({
     sort: undefined,
     order: undefined,
     closed: undefined,
-    q:undefined
+    q: "",
   });
-  useEffect(() => {
+  const [advFlag, setAdvFlag] = useState(false)
+
+  const fetchData = (searchoptions) => {
+    let url = "http://127.0.0.1:8000?site=stackoverflow";
+    for (var key in searchoptions) {
+      if (searchoptions[key]) {
+        url = url + "&" + key + "=" + searchoptions[key];
+      }
+    }
     axios
-      .get(
-        "http://127.0.0.1:8000?page=2&order=desc&sort=activity&q=python3&site=stackoverflow"
-      )
+      .get(url)
       .then((res) => {
         setResults(res.data.items);
         console.log(res.data.items);
@@ -28,9 +34,6 @@ function App() {
       .then(() => {
         console.log("axios called");
       });
-  }, []);
-  const fetchData = (searchoptions) => {
-    console.log(searchoptions);
   };
 
   return (
@@ -43,10 +46,12 @@ function App() {
       <Bottomheader
         searchoptions={searchoptions}
         setSearchOptions={setSearchOptions}
+        setAdvFlag={setAdvFlag}
+        advFlag={advFlag}
       />
-      <AdvancedSearch />
+     {advFlag&& <AdvancedSearch />}
       <div className="commentContainer">
-        {results.map((result, index) => (
+        {results&&(results.map((result, index) => (
           <Comments
             key={index}
             link={result.link}
@@ -55,8 +60,8 @@ function App() {
             avatar={result.owner.profile_image}
             message={result.title}
           />
-        ))}
-        <div class="pagination">
+        )))}
+        {results&&(<div class="pagination">
           <div>&laquo;</div>
           <div>1</div>
           <div class="active" href="#">
@@ -67,7 +72,7 @@ function App() {
           <div href="#">5</div>
           <div href="#">6</div>
           <div href="#">&raquo;</div>
-        </div>
+        </div>)}
       </div>
     </div>
   );

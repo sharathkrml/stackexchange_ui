@@ -6,11 +6,7 @@
   .parameter{
     margin: 10px;
   }
-  .expandicon{
-    width: 18px;
-    margin-left: 4px;
-    transform: rotate(180deg);
-  }
+
   .parameter-input{
     width: 250px;
     height: 25px;

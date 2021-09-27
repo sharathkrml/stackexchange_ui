@@ -1,7 +1,7 @@
 import React from 'react'
 import './BottomHeader.css'
 import expandicon from '../../assets/images/expand-arrow.svg'
-function Bottomheader({searchoptions,setSearchOptions}) {
+function Bottomheader({searchoptions,setSearchOptions,setAdvFlag,advFlag}) {
     return (
         <div className="bottom_header">
             <ul className="nav">
@@ -29,7 +29,7 @@ function Bottomheader({searchoptions,setSearchOptions}) {
                 </div>
                </li>
                <li className="navbar_item-last">
-                <span style={{cursor:'pointer'}}>advanced options<img style={{transform: 'rotate(180deg)'}} className='expandicon' src={expandicon} alt='expand'/></span>
+                <span onClick={()=>setAdvFlag(!advFlag)} style={{cursor:'pointer'}}>advanced options<img className={advFlag?'expandedicon':'expandicon'} src={expandicon} alt='expand'/></span>
                </li>
             </ul>
         </div>

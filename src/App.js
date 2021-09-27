@@ -7,9 +7,12 @@ import AdvancedSearch from "./components/AdvancedSearch/AdvancedSearch";
 const axios = require("axios");
 function App() {
   const [results, setResults] = useState([]);
-  const [sort, setSort] = useState();
-  const [order, setOrder] = useState();
-  const [closed, setClosed] = useState();
+  const [searchoptions, setSearchOptions] = useState({
+    sort: undefined,
+    order: undefined,
+    closed: undefined,
+    q:undefined
+  });
   useEffect(() => {
     axios
       .get(
@@ -26,19 +29,22 @@ function App() {
         console.log("axios called");
       });
   }, []);
+  const fetchData = (searchoptions) => {
+    console.log(searchoptions);
+  };
 
   return (
     <div className="App">
-      <NavBar />
-      <Bottomheader
-        sort={sort}
-        setSort={setSort}
-        order={order}
-        setOrder={setOrder}
-        closed={closed}
-        setClosed={setClosed}
+      <NavBar
+        fetchData={fetchData}
+        searchoptions={searchoptions}
+        setSearchOptions={setSearchOptions}
       />
-      <AdvancedSearch/>
+      <Bottomheader
+        searchoptions={searchoptions}
+        setSearchOptions={setSearchOptions}
+      />
+      <AdvancedSearch />
       <div className="commentContainer">
         {results.map((result, index) => (
           <Comments

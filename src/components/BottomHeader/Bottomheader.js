@@ -1,31 +1,31 @@
 import React from 'react'
 import './BottomHeader.css'
 import expandicon from '../../assets/images/expand-arrow.svg'
-function Bottomheader(props) {
+function Bottomheader({searchoptions,setSearchOptions}) {
     return (
         <div className="bottom_header">
             <ul className="nav">
                <li className="navbar_item">
-                <span>Sort:{props.sort}</span>
+                <span>Sort:{searchoptions.sort}</span>
                 <div className="megamenu">
-                 <span onClick={()=>props.setSort('activity')} className="megamenu_item">activity</span>
-                 <span onClick={()=>props.setSort('votes')} className="megamenu_item">votes</span>
-                 <span onClick={()=>props.setSort('creation')} className="megamenu_item">creation</span>
-                 <span onClick={()=>props.setSort('relevance')} className="megamenu_item">relevance</span>
+                 <span onClick={()=>setSearchOptions(prevSearchOptions=>({...prevSearchOptions,sort:'activity'}))} className="megamenu_item">activity</span>
+                 <span onClick={()=>setSearchOptions(prevSearchOptions=>({...prevSearchOptions,sort:'votes'}))} className="megamenu_item">votes</span>
+                 <span onClick={()=>setSearchOptions(prevSearchOptions=>({...prevSearchOptions,sort:'creation'}))} className="megamenu_item">creation</span>
+                 <span onClick={()=>setSearchOptions(prevSearchOptions=>({...prevSearchOptions,sort:'relevance'}))} className="megamenu_item">relevance</span>
                 </div>
                </li>
                <li className="navbar_item">
-                <span>Order:{props.order}</span>
+                <span>Order:{searchoptions.order}</span>
                 <div className="megamenu">
-                 <span onClick={()=>props.setOrder('desc')} className="megamenu_item">desc</span>
-                 <span onClick={()=>props.setOrder('asc')} className="megamenu_item">asc</span>
+                 <span onClick={()=>setSearchOptions(prevSearchOptions=>({...prevSearchOptions,order:'desc'}))} className="megamenu_item">desc</span>
+                 <span onClick={()=>setSearchOptions(prevSearchOptions=>({...prevSearchOptions,order:'asc'}))} className="megamenu_item">asc</span>
                 </div>
                </li>
                <li className="navbar_item">
-                <span>Closed:{props.closed}</span>
+                <span>Closed:{searchoptions.closed}</span>
                 <div className="megamenu">
-                 <span onClick={()=>props.setClosed('True')} className="megamenu_item">True</span>
-                 <span  onClick={()=>props.setClosed('False')}className="megamenu_item">False</span>
+                 <span onClick={()=>setSearchOptions(prevSearchOptions=>({...prevSearchOptions,closed:'True'}))} className="megamenu_item">True</span>
+                 <span onClick={()=>setSearchOptions(prevSearchOptions=>({...prevSearchOptions,closed:'False'}))} className="megamenu_item">False</span>
                 </div>
                </li>
                <li className="navbar_item-last">

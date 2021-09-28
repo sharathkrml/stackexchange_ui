@@ -1,64 +1,16 @@
 import React from "react";
 import "./AdvancedSearch.css";
-function AdvancedSearch({searchoptions,setSearchOptions,dateoptions,setDateOptions}) {
-  
+function AdvancedSearch({
+  searchoptions,
+  setSearchOptions,
+  dateoptions,
+  setDateOptions,
+}) {
   return (
     <div className="parameters">
       <table>
         <tbody>
           <tr>
-            <td>
-              <table className="parameter">
-                <tbody>
-                  <tr>
-                    <td className="label-holder">
-                      <label htmlFor="param-page">page</label>
-                    </td>
-                    <td>
-                      <input
-                        className="parameter-input"
-                        id="param-page"
-                        type="number"
-                        name="page"
-                        value={searchoptions.page}
-                        onChange={(text) =>
-                          setSearchOptions((prevSearchOptions) => ({
-                            ...prevSearchOptions,
-                            page: text.target.value,
-                          }))
-                        }
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-            <td>
-              <table className="parameter">
-                <tbody>
-                  <tr>
-                    <td className="label-holder">
-                      <label htmlFor="param-pagesize">pagesize</label>
-                    </td>
-                    <td>
-                      <input
-                        className="parameter-input"
-                        id="param-pagesize"
-                        type="number"
-                        name="pagesize"
-                        value={searchoptions.pagesize}
-                        onChange={(text) =>
-                          setSearchOptions((prevSearchOptions) => ({
-                            ...prevSearchOptions,
-                            pagesize: text.target.value,
-                          }))
-                        }
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
             <td>
               <table className="parameter">
                 <tbody>
@@ -73,26 +25,23 @@ function AdvancedSearch({searchoptions,setSearchOptions,dateoptions,setDateOptio
                         type="date"
                         name="fromdate"
                         value={dateoptions.fromdate}
-                        onChange={(text) =>{
+                        onChange={(text) => {
                           setDateOptions((prevDateOptions) => ({
                             ...prevDateOptions,
                             fromdate: text.target.value,
-                          }))
-                          var new_date=new Date(text.target.value)
+                          }));
+                          var new_date = new Date(text.target.value);
                           setSearchOptions((prevSearchOptions) => ({
                             ...prevSearchOptions,
-                            fromdate: new_date.getTime()/1000,
-                          }))
-                        }
-                        }
+                            fromdate: new_date.getTime() / 1000,
+                          }));
+                        }}
                       />
                     </td>
                   </tr>
                 </tbody>
               </table>
             </td>
-          </tr>
-          <tr>
             <td>
               <table className="parameter">
                 <tbody>
@@ -107,18 +56,18 @@ function AdvancedSearch({searchoptions,setSearchOptions,dateoptions,setDateOptio
                         type="date"
                         name="todate"
                         value={dateoptions.todate}
-                        onChange={(text) =>{
+                        onChange={(text) => {
                           setDateOptions((prevDateOptions) => ({
                             ...prevDateOptions,
                             todate: text.target.value,
-                          }))
-                          var new_date=new Date(text.target.value)
+                          }));
+                          var new_date = new Date(text.target.value);
                           setSearchOptions((prevSearchOptions) => ({
                             ...prevSearchOptions,
-                            todate: new_date.getTime()/1000,
-                          }))
+                            todate: new_date.getTime() / 1000,
+                          }));
                         }}
-                        />
+                      />
                     </td>
                   </tr>
                 </tbody>
@@ -138,16 +87,16 @@ function AdvancedSearch({searchoptions,setSearchOptions,dateoptions,setDateOptio
                         type="date"
                         name="min"
                         value={dateoptions.min}
-                        onChange={(text) =>{
+                        onChange={(text) => {
                           setDateOptions((prevDateOptions) => ({
                             ...prevDateOptions,
                             min: text.target.value,
-                          }))
-                          var new_date=new Date(text.target.value)
+                          }));
+                          var new_date = new Date(text.target.value);
                           setSearchOptions((prevSearchOptions) => ({
                             ...prevSearchOptions,
-                            min: new_date.getTime()/1000,
-                          }))
+                            min: new_date.getTime() / 1000,
+                          }));
                         }}
                       />
                     </td>
@@ -155,8 +104,10 @@ function AdvancedSearch({searchoptions,setSearchOptions,dateoptions,setDateOptio
                 </tbody>
               </table>
             </td>
+          </tr>
+          <tr>
             <td>
-            <table className="parameter">
+              <table className="parameter">
                 <tbody>
                   <tr>
                     <td className="label-holder">
@@ -169,26 +120,23 @@ function AdvancedSearch({searchoptions,setSearchOptions,dateoptions,setDateOptio
                         type="date"
                         name="max"
                         value={dateoptions.max}
-                        onChange={(text) =>{
+                        onChange={(text) => {
                           setDateOptions((prevDateOptions) => ({
                             ...prevDateOptions,
                             max: text.target.value,
-                          }))
-                          var new_date=new Date(text.target.value)
+                          }));
+                          var new_date = new Date(text.target.value);
                           setSearchOptions((prevSearchOptions) => ({
                             ...prevSearchOptions,
-                            max: new_date.getTime()/1000,
-                          }))
+                            max: new_date.getTime() / 1000,
+                          }));
                         }}
                       />
                     </td>
                   </tr>
                 </tbody>
               </table>
-            
             </td>
-          </tr>
-          <tr>
             <td>
               <table className="parameter">
                 <tbody>
@@ -244,6 +192,8 @@ function AdvancedSearch({searchoptions,setSearchOptions,dateoptions,setDateOptio
                 </tbody>
               </table>
             </td>
+          </tr>
+          <tr>
             <td>
               <table className="parameter">
                 <tbody>
@@ -270,8 +220,6 @@ function AdvancedSearch({searchoptions,setSearchOptions,dateoptions,setDateOptio
                 </tbody>
               </table>
             </td>
-          </tr>
-          <tr>
             <td>
               <table className="parameter">
                 <tbody>
@@ -330,6 +278,9 @@ function AdvancedSearch({searchoptions,setSearchOptions,dateoptions,setDateOptio
                 </tbody>
               </table>
             </td>
+                      
+          </tr>
+          <tr>
           </tr>
           <tr>
             <td>

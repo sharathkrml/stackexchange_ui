@@ -1,21 +1,22 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Bottomheader from "./components/BottomHeader/Bottomheader";
 import Comments from "./components/comments/Comments";
 import NavBar from "./components/NavBar/NavBar";
 import AdvancedSearch from "./components/AdvancedSearch/AdvancedSearch";
+import loading from "../src/assets/images/loading.gif";
 const axios = require("axios");
 function App() {
   const [results, setResults] = useState([]);
+  const [shownresults, setShownResults] = useState([]);
+  const [pageno, setPageno] = useState(1);
   const [advFlag, setAdvFlag] = useState(false);
-  const [hasmore, setHasMore] = useState("");
+  const [loadingImg, setLoadingImg] = useState(false);
   const [searchoptions, setSearchOptions] = useState({
     sort: "",
     order: "",
     closed: "",
     q: "",
-    page: "1",
-    pagesize: "",
     fromdate: "",
     todate: "",
     accepted: "",
@@ -38,11 +39,11 @@ function App() {
     max: "",
     fromdate: "",
     todate: "",
-  })
-  useEffect(() => {
-    fetchData(searchoptions);
-  }, [searchoptions]);
-  const fetchData = (searchoptions,dateoptions) => {
+  });
+  const [error, setError] = useState("");
+
+  const fetchData = (searchoptions, dateoptions) => {
+    setLoadingImg(true);
     setResults([]);
     let url = "http://127.0.0.1:8000?site=stackoverflow";
     for (var key in searchoptions) {
@@ -50,25 +51,31 @@ function App() {
         url = url + "&" + key + "=" + searchoptions[key];
       }
     }
-    console.log(dateoptions)
-    console.log(searchoptions)
+    console.log(dateoptions);
+    console.log(searchoptions);
     console.log(url);
     axios
       .get(url)
       .then((res) => {
+        setLoadingImg(false);
         setResults(res.data.items);
-        setHasMore(res.data.has_more);
+        setShownResults(res.data.items.slice(0, 10));
         console.log(res);
-        document.title = searchoptions.q?searchoptions.q:"StackExchange API";
+        document.title = searchoptions.q
+          ? searchoptions.q
+          : "StackExchange API";
       })
       .catch((error) => {
-        console.log(error);
+        setError(error.response.data.detail);
       })
       .then(() => {
         console.log("axios called");
       });
   };
-
+  const changePage = (no) => {
+    setPageno(no);
+    setShownResults(results.slice((no - 1) * 10, no * 10));
+  };
   return (
     <div className="App">
       <NavBar
@@ -91,8 +98,8 @@ function App() {
         />
       )}
       <div className="commentContainer">
-        {results &&
-          results.map((result, index) => (
+        {results.length !== 0 &&
+          shownresults.map((result, index) => (
             <Comments
               key={index}
               link={result.link}
@@ -102,29 +109,30 @@ function App() {
               message={result.title}
             />
           ))}
-        {results.length === 0 && <h1 className="no-result">Nothing Found</h1>}
-        {results && (
+        {loadingImg && (
+          <img className="loadingImg" src={loading} alt="loading" />
+        )}
+        {results.length === 0 && <h1 className="no-result">{error}</h1>}
+        {results.length !== 0 && (
           <div className="pagination">
-            {searchoptions.page > 1 && (
-              <>
-                <div>{parseInt(searchoptions.page) - 1}</div>
-              </>
+            {pageno > 1 && (
+              <div onClick={() => changePage(pageno - 1)}>&laquo;</div>
             )}
-            <div className="active">{searchoptions.page}</div>
-
-            {hasmore && (
-              <>
-                <div
-                  onClick={() => {
-                    setSearchOptions((prevSearchOptions) => ({
-                      ...prevSearchOptions,
-                      page: parseInt(prevSearchOptions.page) + 1,
-                    }));
-                  }}
-                >
-                  {parseInt(searchoptions.page) + 1}
-                </div>
-              </>
+            {pageno > 2 && (
+              <div onClick={() => changePage(pageno - 2)}>{pageno - 2}</div>
+            )}
+            {pageno > 1 && (
+              <div onClick={() => changePage(pageno - 1)}>{pageno - 1}</div>
+            )}
+            <div className="active">{pageno}</div>
+            {pageno < 10 && (
+              <div onClick={() => changePage(pageno + 1)}>{pageno + 1}</div>
+            )}
+            {pageno < 9 && (
+              <div onClick={() => changePage(pageno + 2)}>{pageno + 2}</div>
+            )}
+            {pageno < 10 && (
+              <div onClick={() => changePage(pageno + 1)}>&raquo;</div>
             )}
           </div>
         )}

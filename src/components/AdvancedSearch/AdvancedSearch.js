@@ -1,6 +1,7 @@
 import React from "react";
 import "./AdvancedSearch.css";
-function AdvancedSearch({searchoptions,setSearchOptions}) {
+function AdvancedSearch({searchoptions,setSearchOptions,dateoptions,setDateOptions}) {
+  
   return (
     <div className="parameters">
       <table>
@@ -71,12 +72,18 @@ function AdvancedSearch({searchoptions,setSearchOptions}) {
                         id="param-fromdate"
                         type="date"
                         name="fromdate"
-                        value={searchoptions.fromdate}
-                        onChange={(text) =>
-                          setSearchOptions((prevSearchOptions) => ({
-                            ...prevSearchOptions,
+                        value={dateoptions.fromdate}
+                        onChange={(text) =>{
+                          setDateOptions((prevDateOptions) => ({
+                            ...prevDateOptions,
                             fromdate: text.target.value,
                           }))
+                          var new_date=new Date(text.target.value)
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            fromdate: new_date.getTime()/1000,
+                          }))
+                        }
                         }
                       />
                     </td>
@@ -99,14 +106,19 @@ function AdvancedSearch({searchoptions,setSearchOptions}) {
                         id="param-todate"
                         type="date"
                         name="todate"
-                        value={searchoptions.todate}
-                        onChange={(text) =>
-                          setSearchOptions((prevSearchOptions) => ({
-                            ...prevSearchOptions,
+                        value={dateoptions.todate}
+                        onChange={(text) =>{
+                          setDateOptions((prevDateOptions) => ({
+                            ...prevDateOptions,
                             todate: text.target.value,
                           }))
-                        }
-                      />
+                          var new_date=new Date(text.target.value)
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            todate: new_date.getTime()/1000,
+                          }))
+                        }}
+                        />
                     </td>
                   </tr>
                 </tbody>
@@ -125,13 +137,18 @@ function AdvancedSearch({searchoptions,setSearchOptions}) {
                         id="param-min"
                         type="date"
                         name="min"
-                        value={searchoptions.min}
-                        onChange={(text) =>
-                          setSearchOptions((prevSearchOptions) => ({
-                            ...prevSearchOptions,
+                        value={dateoptions.min}
+                        onChange={(text) =>{
+                          setDateOptions((prevDateOptions) => ({
+                            ...prevDateOptions,
                             min: text.target.value,
                           }))
-                        }
+                          var new_date=new Date(text.target.value)
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            min: new_date.getTime()/1000,
+                          }))
+                        }}
                       />
                     </td>
                   </tr>
@@ -151,13 +168,18 @@ function AdvancedSearch({searchoptions,setSearchOptions}) {
                         id="param-max"
                         type="date"
                         name="max"
-                        value={searchoptions.max}
-                        onChange={(text) =>
-                          setSearchOptions((prevSearchOptions) => ({
-                            ...prevSearchOptions,
+                        value={dateoptions.max}
+                        onChange={(text) =>{
+                          setDateOptions((prevDateOptions) => ({
+                            ...prevDateOptions,
                             max: text.target.value,
                           }))
-                        }
+                          var new_date=new Date(text.target.value)
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            max: new_date.getTime()/1000,
+                          }))
+                        }}
                       />
                     </td>
                   </tr>

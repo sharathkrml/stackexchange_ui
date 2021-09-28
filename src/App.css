@@ -36,8 +36,11 @@ body {
 }
 
 .pagination div.active {
-  background-color: #4CAF50;
+  background-color: #264981;
   color: white;
 }
-
-.pagination div:hover:not(.active) {background-color: #ddd;}
+.no-result {
+  margin: 100px;
+  color: white;
+}
+.pagination div:hover:not(.active) {background-color: black;color: white;}

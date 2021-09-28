@@ -2,10 +2,15 @@ import React from "react";
 import "./NavBar.css";
 import Image from "../../assets/images/logo.svg";
 function NavBar({ fetchData, searchoptions, setSearchOptions }) {
+  const handleKeyDown=(event)=>{
+    if (event.key === 'Enter') {
+      fetchData(searchoptions);
+    }
+  }
   return (
     <div className="navbar">
       <img src={Image} alt="" className="logo" />
-      <div className="inputContainer" placeholder="search ....">
+      <div className="inputContainer">
         <input
           onChange={(text) =>
             setSearchOptions((prevSearchOptions) => ({
@@ -16,6 +21,7 @@ function NavBar({ fetchData, searchoptions, setSearchOptions }) {
           value={searchoptions.q}
           type="text"
           className="search"
+          onKeyDown={handleKeyDown}
         />
         <button
         style={{cursor:'pointer'}}

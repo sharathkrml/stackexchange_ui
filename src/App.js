@@ -12,6 +12,24 @@ function App() {
     order: undefined,
     closed: undefined,
     q: "",
+    page:"",
+    pagesize:"",
+    fromdate:"",
+    todate:"",
+    accepted:"",
+    answers:"",
+    body:"",
+    migrated:"",
+    notice:"",
+    nottagged:"",
+    tagged:"",
+    title:"",
+    user:"",
+    url:"",
+    views:"",
+    wiki:"",
+    min:"",
+    max:""
   });
   const [advFlag, setAdvFlag] = useState(false)
 
@@ -22,11 +40,13 @@ function App() {
         url = url + "&" + key + "=" + searchoptions[key];
       }
     }
+    console.log(url)
     axios
       .get(url)
       .then((res) => {
         setResults(res.data.items);
         console.log(res.data.items);
+        document.title=searchoptions.q
       })
       .catch((error) => {
         console.log(error);
@@ -49,7 +69,7 @@ function App() {
         setAdvFlag={setAdvFlag}
         advFlag={advFlag}
       />
-     {advFlag&& <AdvancedSearch />}
+     {advFlag&& <AdvancedSearch searchoptions={searchoptions} setSearchOptions={setSearchOptions} />}
       <div className="commentContainer">
         {results&&(results.map((result, index) => (
           <Comments
@@ -61,10 +81,10 @@ function App() {
             message={result.title}
           />
         )))}
-        {results&&(<div class="pagination">
+        {results&&(<div className="pagination">
           <div>&laquo;</div>
           <div>1</div>
-          <div class="active" href="#">
+          <div className="active" href="#">
             2
           </div>
           <div href="#">3</div>

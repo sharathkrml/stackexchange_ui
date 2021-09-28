@@ -2,10 +2,11 @@ import React from "react";
 import "./comments.css";
 function Comments(props) {
   return (
-    <a style={{ textDecoration: "none" }} href={props.link}>
-      <div className="comment">
+    <div className="comment">
         <div className="content">
+        <a style={{ textDecoration: "none" }} href={props.link}>
           <p>{props.message}</p>
+        </a>
         </div>
         <a href={props.userlink}>
         <div className="bottom-section">
@@ -14,7 +15,6 @@ function Comments(props) {
         </div>
         </a>
       </div>
-    </a>
   );
 }
 export default Comments;

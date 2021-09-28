@@ -1,6 +1,6 @@
 import React from "react";
 import "./AdvancedSearch.css";
-function AdvancedSearch() {
+function AdvancedSearch({searchoptions,setSearchOptions}) {
   return (
     <div className="parameters">
       <table>
@@ -19,6 +19,13 @@ function AdvancedSearch() {
                         id="param-page"
                         type="number"
                         name="page"
+                        value={searchoptions.page}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            page: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -38,6 +45,13 @@ function AdvancedSearch() {
                         id="param-pagesize"
                         type="number"
                         name="pagesize"
+                        value={searchoptions.pagesize}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            pagesize: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -57,6 +71,13 @@ function AdvancedSearch() {
                         id="param-fromdate"
                         type="date"
                         name="fromdate"
+                        value={searchoptions.fromdate}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            fromdate: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -78,6 +99,13 @@ function AdvancedSearch() {
                         id="param-todate"
                         type="date"
                         name="todate"
+                        value={searchoptions.todate}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            todate: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -97,6 +125,13 @@ function AdvancedSearch() {
                         id="param-min"
                         type="date"
                         name="min"
+                        value={searchoptions.min}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            min: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -116,6 +151,13 @@ function AdvancedSearch() {
                         id="param-max"
                         type="date"
                         name="max"
+                        value={searchoptions.max}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            max: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -124,7 +166,6 @@ function AdvancedSearch() {
             
             </td>
           </tr>
-         
           <tr>
             <td>
               <table className="parameter">
@@ -138,6 +179,13 @@ function AdvancedSearch() {
                         name="accepted"
                         id="param-accepted"
                         className="parameter-select"
+                        value={searchoptions.accepted}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            accepted: text.target.value,
+                          }))
+                        }
                       >
                         <option></option>
                         <option>True</option>
@@ -161,6 +209,13 @@ function AdvancedSearch() {
                         id="param-answers"
                         type="text"
                         name="answers"
+                        value={searchoptions.answers}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            answers: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -180,6 +235,13 @@ function AdvancedSearch() {
                         id="param-body"
                         type="text"
                         name="body"
+                        value={searchoptions.body}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            body: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -193,28 +255,6 @@ function AdvancedSearch() {
                 <tbody>
                   <tr>
                     <td className="label-holder">
-                      <label htmlFor="param-closed">closed</label>
-                    </td>
-                    <td>
-                      <select
-                        name="closed"
-                        id="param-closed"
-                        className="parameter-select"
-                      >
-                        <option></option>
-                        <option>True</option>
-                        <option>False</option>
-                      </select>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-            <td>
-              <table className="parameter">
-                <tbody>
-                  <tr>
-                    <td className="label-holder">
                       <label htmlFor="param-migrated">migrated</label>
                     </td>
                     <td>
@@ -222,6 +262,13 @@ function AdvancedSearch() {
                         name="migrated"
                         id="param-migrated"
                         className="parameter-select"
+                        value={searchoptions.migrated}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            migrated: text.target.value,
+                          }))
+                        }
                       >
                         <option></option>
                         <option>True</option>
@@ -244,6 +291,13 @@ function AdvancedSearch() {
                         name="notice"
                         id="param-notice"
                         className="parameter-select"
+                        value={searchoptions.notice}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            notice: text.target.value,
+                          }))
+                        }
                       >
                         <option></option>
                         <option>True</option>
@@ -269,6 +323,13 @@ function AdvancedSearch() {
                         id="param-nottagged"
                         type="text"
                         name="nottagged"
+                        value={searchoptions.nottagged}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            nottagged: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -288,6 +349,13 @@ function AdvancedSearch() {
                         id="param-tagged"
                         type="text"
                         name="tagged"
+                        value={searchoptions.tagged}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            tagged: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -307,6 +375,13 @@ function AdvancedSearch() {
                         id="param-title"
                         type="text"
                         name="title"
+                        value={searchoptions.title}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            title: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -326,8 +401,15 @@ function AdvancedSearch() {
                       <input
                         className="parameter-input"
                         id="param-user"
-                        type="text"
+                        type="number"
                         name="user"
+                        value={searchoptions.user}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            user: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -347,6 +429,13 @@ function AdvancedSearch() {
                         id="param-url"
                         type="text"
                         name="url"
+                        value={searchoptions.url}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            url: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -366,6 +455,13 @@ function AdvancedSearch() {
                         id="param-views"
                         type="text"
                         name="views"
+                        value={searchoptions.views}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            views: text.target.value,
+                          }))
+                        }
                       />
                     </td>
                   </tr>
@@ -386,6 +482,13 @@ function AdvancedSearch() {
                         name="wiki"
                         id="param-wiki"
                         className="parameter-select"
+                        value={searchoptions.wiki}
+                        onChange={(text) =>
+                          setSearchOptions((prevSearchOptions) => ({
+                            ...prevSearchOptions,
+                            wiki: text.target.value,
+                          }))
+                        }
                       >
                         <option></option>
                         <option>True</option>
